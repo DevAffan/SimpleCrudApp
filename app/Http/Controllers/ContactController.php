@@ -38,9 +38,10 @@ class ContactController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'contact' => 'required|string|max:15',
+            'contact' => 'required|string|regex:/^[0-9]+$/|max:15', // Only digits allowed
             'note' => 'nullable|string',
         ]);
+
 
         $userId = $request->user()->id;
         $validatedData['user_id'] = $userId;

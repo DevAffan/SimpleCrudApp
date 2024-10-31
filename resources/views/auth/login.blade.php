@@ -15,11 +15,17 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
+            <div class="relative">
+                <x-text-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                <!-- Eye icon for toggling visibility -->
+                <span id="toggle-password-visibility" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                    <i id="eye-icon" class="fas fa-eye text-gray-500"></i> <!-- Font Awesome icon -->
+                </span>
+            </div>
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
