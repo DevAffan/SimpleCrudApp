@@ -13,7 +13,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = DB::table('contacts')->paginate(6);
+        $contacts = DB::table('contacts')
+        ->where('user_id', auth()->id())
+        ->orderBy('created_at', 'desc')
+        ->paginate(6);
+
         return view('contact.index', ['contacts'=> $contacts]);
     }
 
@@ -30,7 +34,25 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Validate the request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'contact' => 'required|string|max:15',
+            'note' => 'nullable|string',
+        ]);
+
+        $userId = $request->user()->id;
+        $validatedData['user_id'] = $userId;
+
+        // Create a new contact with validated data
+        $contact = Contact::create($validatedData);
+
+        // Flash a success message
+        session()->flash('message', 'Contact created successfully!');
+
+        // Redirect to the contact show page
+        return redirect()->route('contact.show', ['contact' => $contact]);
     }
 
     /**
@@ -54,7 +76,22 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+            // Validate the request
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'contact' => 'required|string|max:15',
+                'note' => 'nullable|string',
+            ]);
+
+            // Attempt to update the contact with validated data
+            $contact->update($validatedData);
+
+            // Flash a success message
+            session()->flash('message', 'Contact updated successfully!');
+
+            // Redirect to the contact show page
+            return redirect()->route('contact.show' , ['contact' => $contact]);
+
     }
 
     /**
@@ -62,6 +99,13 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        // Delete the contact
+        $contact->delete();
+
+        session()->flash('message', 'Contact deleted successfully.');
+
+        // Redirect to the contact index
+        return redirect()->route('contact.index');
     }
+
 }

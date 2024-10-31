@@ -27,6 +27,32 @@
                 </header>
             @endisset
 
+            {{-- Session Messages --}}
+            @if (session()->has('message'))
+                <div id="success-message" class="bg-green-500 text-white p-4 rounded-lg mb-4 shadow-md max-w-xs absolute right-0 mr-4">
+                    <strong class="font-bold">Success!</strong>
+                    <span class="block sm:inline">{{ session('message') }}</span>
+                </div>
+            @elseif (session()->has('error'))
+                <div id="error-message" class="bg-red-500 text-white p-4 rounded-lg mb-4 shadow-md max-w-xs absolute right-0 mr-4">
+                    <strong class="font-bold">Failed!</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <div id="error-message" class="bg-red-500 text-white p-4 rounded-lg mb-4 shadow-md max-w-xs absolute right-0 mr-4">
+                                <strong class="font-bold">Failed!</strong>
+                                <span class="block sm:inline">{{ $error }}</span>
+                            </div>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
