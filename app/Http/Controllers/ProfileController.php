@@ -26,11 +26,17 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // custom work to stop email update
+        $user = $request->user();
+        // Check if the email in the request is different from the user's current email
+        if ($request->input('email') !== $user->email) {
+            return Redirect::route('profile.edit')->withErrors(['email' => 'Email update is not allowed.']);
         }
+
+        $request->user()->fill($request->validated());
+        // if ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
 
         $request->user()->save();
 

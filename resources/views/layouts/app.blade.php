@@ -55,6 +55,10 @@
 
             <!-- Page Content -->
             <main>
+                <!-- Custom Loader HTML -->
+                <div id="loader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
                 {{ $slot }}
             </main>
         </div>

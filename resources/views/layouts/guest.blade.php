@@ -49,6 +49,11 @@
             </div>
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                <!-- Custom Loader HTML -->
+                <div id="loader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+                {{-- Content --}}
                 {{ $slot }}
             </div>
         </div>

@@ -36,7 +36,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-semibold">Note</label>
-                <p class="border border-gray-300 p-2 rounded-lg">{{ $contact->note }}</p>
+                <p class="border border-gray-300 p-2 rounded-lg h-40">{{ $contact->note }}</p>
             </div>
         </div>
     </div>

@@ -21,8 +21,9 @@
             </div>
 
             <div class="mb-4">
-                <label for="contact" class="block text-gray-700 font-semibold">Contact Number</label>
+                <label for="contact" class="block text-gray-700 font-semibold">Contact Number <span class="text-gray-500 text-sm">(only numbers)</span></label>
                 <input type="text" id="contact" name="contact" value="{{$contact->contact}}" class="w-full border border-gray-300 p-2 rounded-lg" required>
+                <p id="contact-error" class="text-red-500 text-sm mt-1 hidden"></p>
             </div>
 
             <div class="mb-4">
@@ -30,7 +31,7 @@
                 <textarea id="note" name="note" class="w-full border border-gray-300 p-2 rounded-lg" rows="3">{{ $contact->note }}</textarea>
             </div>
 
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            <button type="submit" class="form-button bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                 Update Contact
             </button>
         </form>
