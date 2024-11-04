@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'CrudApp') }}</title>
+        <title>{{ config('app.name', 'CRUDApp') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -19,7 +19,7 @@
             <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
                 <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <a href="https://flowbite.com" class="flex items-center">
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Crud App</span>
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CRUD App</span>
                     </a>
                     <div class="flex items-center lg:order-2">
                         @if (request()->routeIs('login') || request()->routeIs('home'))
